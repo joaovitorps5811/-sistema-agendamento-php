@@ -100,7 +100,6 @@ http://localhost/agendamento
 ---
 
 ## 👨‍💻 Autor
-João Vitor Pereira Da Silva
 **João Vitor Pereira da Silva**
 
 Projeto desenvolvido para fins acadêmicos.
