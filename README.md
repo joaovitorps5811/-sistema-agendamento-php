@@ -1,9 +1,9 @@
 # -sistema-agendamento-php
 Projeto de sistema de agendamento em PHP utilizando programação orientada a objetos.
 
-# 📅 Sistema de Agendamento em PHP
+# Sistema de Agendamento em PHP
 
-## 📌 Descrição do Projeto
+## Descrição do Projeto
 O Sistema de Agendamento é uma aplicação web desenvolvida em PHP com o objetivo de permitir que usuários realizem o agendamento de serviços de forma simples e organizada.
 
 O sistema permite cadastrar informações como nome do cliente, serviço desejado, data e horário do atendimento.
