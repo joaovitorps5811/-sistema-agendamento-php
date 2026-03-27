@@ -14,13 +14,11 @@ A modelagem do sistema foi baseada nos conceitos de classes, objetos, herança e
 
 ## Estrutura do Projeto
 
-Agendamento/
-conexao.php - Conexão com o banco de dados
-index.php - Página inicial
-cadastro.php - Cadastro de usuários
-login.php - Login do sistema
-agendamento.php - Tela de agendamento
-README.md - Documentação do projeto
+Agendamento/ conexao.php - Conexão com o banco de dados index.php - Página inicial cadastro.php - Cadastro de usuários login.php - Login do sistema agendamento.php - Tela de agendamento 
+
+classes/ Usuario.php - Classe base de usuário Cliente.php - Classe de cliente Admin.php - Classe de administrador Agendamento.php - Classe de agendamento 
+
+css/ style.css - Arquivo de estilos documentos/ UML AGENDAMENTO.pdf - Diagrama do sistema README.md - Documentação do projeto
 
 ## Tecnologias Utilizadas
 
