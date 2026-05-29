@@ -19,10 +19,18 @@ Route::get('/cadastro', function () {
     return view('cadastro');
 });
 Route::post('/cadastro', [AuthController::class, 'cadastrar']);
-
+// Rota para o dashboard do administrador
 Route::get('/dashboard-admin', function () {
-    return view('dashboard-admin');
+    return view('dashboard_admin');
 });
 Route::get('/meus-agendamentos', function () {
     return view('meus-agendamentos');
 });
+// Rota para o dashboard do usuário
+Route::get('/dashboard-user', function () {
+    return view('dashborard_user');
+})->name('dashboard-user');
+
+Route::get('/dashboard/user/novo-agendamento', function () {
+    return view('novo_agendamento'); 
+})->name('agendamento.novo');
