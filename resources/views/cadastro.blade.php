@@ -267,7 +267,7 @@
 
         <div class="form-group">
             <label for="senha">Senha</label>
-            <input type="password" name="password" id="senha" class="form-control" placeholder="Sua senha" required>
+            <input type="password" name="senha" id="senha" class="form-control" placeholder="Sua senha" required>
         </div>
 
         <button type="submit" class="btn-primary">
