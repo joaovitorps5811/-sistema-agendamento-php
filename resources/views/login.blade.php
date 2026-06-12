@@ -198,6 +198,19 @@
             line-height: 1.5;
         }
 
+        /* Novo estilo para Alerta de Erro (Vermelho Claro) */
+        .alert-erro {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: left;
+            margin-bottom: 25px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
         /* Links de navegação do rodapé */
         .footer-links {
             font-size: 14px;
@@ -228,33 +241,33 @@
         .btn-back:hover {
             color: #334155;
         }
-/* Responsividade para celulares e tablets */
-@media (max-width: 540px) {
-    html, body {
-        align-items: flex-start;
-        padding: 20px 0;
-    }
+        
+        /* Responsividade para celulares e tablets */
+        @media (max-width: 540px) {
+            html, body {
+                align-items: flex-start;
+                padding: 20px 0;
+            }
 
-    .card-container {
-        max-width: 95%;
-        padding: 35px 20px;
-    }
+            .card-container {
+                max-width: 95%;
+                padding: 35px 20px;
+            }
 
-    h2 {
-        font-size: 20px;
-    }
+            h2 {
+                font-size: 20px;
+            }
 
-    .brand {
-        margin-bottom: 25px;
-    }
+            .brand {
+                margin-bottom: 25px;
+            }
 
-    /* Ajuste específico para as opções de "Lembrar-me" e "Esqueci a senha" não quebrarem */
-    .form-options {
-        flex-direction: row;
-        justify-content: space-between;
-        font-size: 13px;
-    }
-}
+            .form-options {
+                flex-direction: row;
+                justify-content: space-between;
+                font-size: 13px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -273,18 +286,24 @@
             <strong>Sucesso!</strong> {{ session('sucesso') }}
         </div>
     @endif
+
+    @if($errors->any())
+        <div class="alert-erro">
+            <strong>Ops!</strong> {{ $errors->first() }}
+        </div>
+    @endif
     
     <form action="/login" method="POST">
         @csrf 
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="form-control" placeholder="Seu e-mail" required>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Seu e-mail" required value="{{ old('email') }}">
         </div>
 
         <div class="form-group">
             <label for="senha">Senha</label>
-            <input type="password" name="password" id="senha" class="form-control" placeholder="Sua senha" required>
+            <input type="password" name="senha" id="senha" class="form-control" placeholder="Sua senha" required>
         </div>
 
         <div class="form-options">

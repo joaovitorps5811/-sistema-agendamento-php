@@ -7,6 +7,7 @@ use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Agendamento;
 
 class User extends Authenticatable
 {
@@ -14,7 +15,10 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $table = 'usuarios';
- 
+    
+    // NOVO: Avisa o Laravel que a tabela não tem as colunas created_at e updated_at
+    public $timestamps = false; 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -36,10 +40,12 @@ class User extends Authenticatable
         'senha',
         'remember_token',
     ];
-   public function getAuthPassword()
+
+    public function getAuthPassword()
     {
         return $this->senha; 
-        }
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -51,5 +57,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'senha' => 'hashed',
         ];
+    }
+
+    /**
+     * Relacionamento com a tabela de agendamentos
+     */
+    public function agendamentos()
+    {
+        return $this->hasMany(Agendamento::class, 'id_usuario', 'id');
     }
 }

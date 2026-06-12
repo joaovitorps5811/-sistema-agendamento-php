@@ -1,315 +1,116 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Administrativo - DeskTime</title>
+    <title>Painel do Administrador - DeskTime</title>
     <style>
-        body{
-            margin: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: #f8fafc;
-            color: #0f172a;
-        }
-        /* menu superior */
-        .topbar{
-            background-color: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 16px 40px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: relative;
-            z-index: 10;
-        }
-        .brand{
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .brand-icon{
-            width: 20px;
-            height: 20px;
-            background-color: #1e3a8a;
-            border-radius: 5px;
-            transform: rotate(45deg);
-            flex-shrink: 0;
-        }
-        .brand-text{
-            font-size: 22px;
-            font-weight: 700;
-            color: #0f172a;
-            line-height: 1;
-        }
-        .brand-text span{
-            color: #1e3a8a;
-        }
-        .user-menu{
-            display: flex;
-            align-items: center;
-            gap: 25px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-        .user-menu a{
-            color: #64748b;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-        .user-menu a:hover, .user-menu a.active{
-            color: #1e3a8a;
-        }
-        .hamburger{
-            display:none;
-            flex-direction: column;
-            gap: 5px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 4px;
-        }
-        .hamburger .bar{
-            width:24px;
-            height: 3px;
-            background-color: #0f172a;
-            border-radius: 2px;
-            transition: all 0.3s;
-        }
-
-        /* Container Principal */
-        .main-container{
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 0 20px;
-            box-sizing: border-box;
-        }
-        .welcome-section{
-            margin-bottom: 30px;
-        }
-        .welcome-section h1{
-            font-size: 28px;
-            margin: 0 0 5px 0;
-            font-weight: 700;
-        }
-        .welcome-section p{
-            margin: 0;
-            color: #64748b;
-            font-size: 15px;
-        }
-
-        /* Cards de Indicadores (Métricas do Dono) */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 20px;
-            margin-bottom: 35px;
-        }
-        .stat-card {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            padding: 20px;
-            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05);
-        }
-        .stat-card .stat-title {
-            font-size: 14px;
-            color: #64748b;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-        .stat-card .stat-value {
-            font-size: 24px;
-            font-weight: 700;
-            color: #0f172a;
-        }
-        .stat-card .stat-desc {
-            font-size: 12px;
-            color: #10b981; /* Verde */
-            margin-top: 4px;
-            font-weight: 500;
-        }
-
-        /* Tabela de Controle da Barbearia */
-        .table-container {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-        .table-header-title {
-            padding: 20px 24px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .table-header-title h2 {
-            margin: 0;
-            font-size: 18px;
-            font-weight: 700;
-            color: #0f172a;
-        }
-        .appointments-table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            font-size: 14px;
-        }
-        .appointments-table th {
-            background-color: #f8fafc;
-            padding: 16px 24px;
-            color: #64748b;
-            font-weight: 600;
-            border-bottom: 1px solid #e2e8f0;
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 0.05em;
-        }
-        .appointments-table td {
-            padding: 18px 24px;
-            border-bottom: 1px solid #f1f5f9;
-            color: #334155;
-        }
-        .appointments-table tr:last-child td {
-            border-bottom: none;
-        }
-        .appointments-table tr:hover td {
-            background-color: #f8fafc;
-        }
+        body { margin: 0; font-family: 'Segoe UI', system-ui, sans-serif; background-color: #f8fafc; color: #0f172a; }
+        .topbar { background-color: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 16px 40px; display: flex; align-items: center; justify-content: space-between; }
+        .brand { display: flex; align-items: center; gap: 12px; font-size: 22px; font-weight: 700; }
+        .brand span { color: #1e3a8a; }
+        .user-menu { font-size: 14px; font-weight: 600; color: #64748b; display: flex; gap: 20px; align-items: center; }
+        .user-menu a { color: #b91c1c; text-decoration: none; }
+        .main-container { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+        .card { background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 14px; padding: 24px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .card h2 { font-size: 18px; margin-top: 0; margin-bottom: 16px; color: #1e3a8a; }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+        th { background-color: #f8fafc; color: #64748b; font-weight: 600; text-transform: uppercase; font-size: 12px; padding: 16px; border-bottom: 1px solid #e2e8f0; }
+        td { padding: 16px; border-bottom: 1px solid #f1f5f9; color: #334155; vertical-align: middle; }
+        .badge { display: inline-block; padding: 6px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+        .status-pendente { background-color: #fef3c7; color: #d97706; }
+        .status-confirmado { background-color: #dcfce7; color: #15803d; }
+        .status-cancelado { background-color: #fee2e2; color: #b91c1c; }
         
-        /* Badges de Status */
-        .badge {
-            padding: 6px 14px;
-            border-radius: 50px;
-            font-size: 12px;
-            font-weight: 600;
-            display: inline-block;
-        }
-        .badge-confirmado { background-color: #dcfce7; color: #166534; }
-        .badge-pendente { background-color: #fef9c3; color: #854d0e; }
-
-        /* Ações básicas para a prévia */
-        .action-link {
-            color: #1e3a8a;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 13px;
-        }
-        .action-link:hover { text-decoration: underline; }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .topbar { padding: 16px 20px; }
-            .hamburger { display: flex; }
-            .user-menu {
-                display: none; 
-                flex-direction: column;
-                position: absolute;
-                top: 100%; left: 0; width: 100%;
-                background-color: #ffffff;
-                border-bottom: 1px solid #e2e8f0;
-            }
-            .user-menu.active { display: flex; }
-            .user-menu span, .user-menu a {
-                padding: 15px 20px;
-                width: 100%;
-                box-sizing: border-box;
-                border-bottom: 1px solid #f1f5f9;
-            }
-            .table-container { overflow-x: auto; }
-        }
+        /* Botões de Ação */
+        .actions-wrapper { display: flex; gap: 8px; }
+        .btn-action { border: none; padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .btn-confirm { background-color: #16803d; color: #ffffff; }
+        .btn-confirm:hover { background-color: #14532d; }
+        .btn-cancel { background-color: #b91c1c; color: #ffffff; }
+        .btn-cancel:hover { background-color: #7f1d1d; }
+        
+        .alert-success { background-color: #dcfce7; border: 1px solid #bbf7d0; color: #15803d; padding: 14px 20px; border-radius: 10px; margin-bottom: 25px; font-size: 15px; font-weight: 500; }
     </style>
 </head>
 <body>
     <nav class="topbar">
-        <div class="brand">
-            <div class="brand-icon"></div>
-            <div class="brand-text">Desk<span>Time</span></div>
-        </div>
-        <button class="hamburger" id="hamburgerBtn">
-            <div class="bar"></div>
-            <div class="bar"></div>
-            <div class="bar"></div>
-        </button>
-        <div class="user-menu" id="userMenu">
-            <span>Painel do Admin</span>
-            <a href="#" class="active">Agenda Geral</a>
-            <a href="#">Clientes</a>
-            <a href="#">Sair</a>
+        <div class="brand">Desk<span>Time Admin</span></div>
+        <div class="user-menu">
+            <span>Olá, {{ auth()->user()->nome }}</span>
+            <form action="/logout" method="POST" style="display: inline;">
+                @csrf
+                <button type="submit" style="background: none; border: none; color: #b91c1c; font-size: 14px; font-weight: 600; cursor: pointer; padding: 0; font-family: inherit;">Sair</button>
+            </form>
         </div>
     </nav>
 
     <main class="main-container">
-        <div class="welcome-section">
-            <h1>Painel de Controle</h1>
-            <p>Gerenciamento de horários e agendamentos da barbearia.</p>
-        </div>
+        @if(session('sucesso'))
+            <div class="alert-success">
+                {{ session('sucesso') }}
+            </div>
+        @endif
 
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-title">Agendamentos Hoje</div>
-                <div class="stat-value">8 Cortes</div>
-                <div class="stat-desc">3 já concluídos</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-title">Faturamento Estimado</div>
-                <div class="stat-value">R$ 290,00</div>
-                <div class="stat-desc">+12% que ontem</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-title">Aguardando Confirmação</div>
-                <div class="stat-value">2 Clientes</div>
-                <div class="stat-desc" style="color: #64748b;">Ações pendentes</div>
-            </div>
-        </div>
-
-        <div class="table-container">
-            <div class="table-header-title">
-                <h2>Próximos Clientes do Dia</h2>
-            </div>
-            <table class="appointments-table">
+        <div class="card">
+            <h2>Todos os Agendamentos do Sistema</h2>
+            <table>
                 <thead>
                     <tr>
                         <th>Cliente</th>
                         <th>Serviço</th>
+                        <th>Data</th>
                         <th>Horário</th>
                         <th>Status</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td><strong>Carlos Henrique</strong></td>
-                        <td>Corte Degradê + Sobrancelha</td>
-                        <td>10:30</td>
-                        <td><span class="badge badge-confirmado">Confirmado</span></td>
-                        <td><a href="#" class="action-link">Concluir</a></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Marcos Souza</strong></td>
-                        <td>Barba Completa (Toalha Quente)</td>
-                        <td>16:00</td>
-                        <td><span class="badge badge-pendente">Pendente</span></td>
-                        <td><a href="#" class="action-link" style="color: #166534;">Confirmar</a></td>
-                    </tr>
-                    <tr>
-                        <td><strong>Lucas Almeida</strong></td>
-                        <td>Combo: Cabelo e Barba</td>
-                        <td>17:30</td>
-                        <td><span class="badge badge-confirmado">Confirmado</span></td>
-                        <td><a href="#" class="action-link">Concluir</a></td>
-                    </tr>
+                    @forelse($agendamentos as $agendamento)
+                        <tr>
+                            <td><strong>{{ $agendamento->nome_cliente }}</strong></td>
+                            <td>
+                                @if($agendamento->id_servico == 1) Corte Tradicional / Degradê
+                                @elseif($agendamento->id_servico == 2) Barba Completa (Toalha Quente)
+                                @elseif($agendamento->id_servico == 3) Combo: Cabelo + Barba
+                                @elseif($agendamento->id_servico == 4) Combo Completo
+                                @else Serviço #{{ $agendamento->id_servico }} @endif
+                            </td>
+                            <td>{{ date('d/m/Y', strtotime($agendamento->data_agendamento)) }}</td>
+                            <td>{{ $agendamento->hora }}</td>
+                            <td>
+                                <span class="badge status-{{ strtolower($agendamento->status) }}">
+                                    {{ ucfirst($agendamento->status) }}
+                                </span>
+                            </td>
+                            <td>
+                                @if(strtolower($agendamento->status) === 'pendente')
+                                    <div class="actions-wrapper">
+                                        <form action="/admin/agendamentos/{{ $agendamento->id }}/confirmar" method="POST" onsubmit="return confirm('Deseja mesmo confirmar esse agendamento?')">
+                                            @csrf
+                                            <button type="submit" class="btn-action btn-confirm">Confirmar</button>
+                                        </form>
+
+                                        <form action="/admin/agendamentos/{{ $agendamento->id }}/cancelar" method="POST" onsubmit="return confirm('Tem certeza que deseja cancelar esse agendamento?')">
+                                            @csrf
+                                            <button type="submit" class="btn-action btn-cancel">Cancelar</button>
+                                        </form>
+                                    </div>
+                                @else
+                                    <span style="color: #94a3b8; font-size: 12px; font-style: italic;">Finalizado</span>
+                                @endif
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="6" style="text-align: center; color: #64748b; padding: 20px;">
+                                Nenhum agendamento encontrado no sistema.
+                            </td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>
     </main>
-
-    <script>
-        const hamburgerBtn = document.getElementById('hamburgerBtn');
-        const userMenu = document.getElementById('userMenu');
-
-        hamburgerBtn.addEventListener('click', () => {
-            hamburgerBtn.classList.toggle('active');    
-            userMenu.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>

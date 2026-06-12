@@ -161,6 +161,19 @@
             background-color: #f8fafc;
         }
 
+        /* Alerta de Erro Bonito Padronizado */
+        .alert-erro {
+            background-color: #fef2f2;
+            color: #991b1b;
+            border: 1px solid #fca5a5;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: left;
+            margin-bottom: 25px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
         /* Box de Destaque Azul Inferior */
         .info-box {
             background-color: #eff6ff; 
@@ -195,6 +208,7 @@
             color: #1e40af;
             text-decoration: none;
             font-weight: 600;
+            margin-left: 4px;
         }
 
         .footer-links a:hover {
@@ -215,30 +229,31 @@
         .btn-back:hover {
             color: #334155;
         }
-/* Responsividade para celulares e tablets */
-@media (max-width: 540px) {
-    html, body {
-        align-items: flex-start; 
-        padding: 20px 0;
-    }
 
-    .card-container {
-        max-width: 95%; 
-        padding: 35px 20px; 
-    }
+        /* Responsividade para celulares e tablets */
+        @media (max-width: 540px) {
+            html, body {
+                align-items: flex-start; 
+                padding: 20px 0;
+            }
 
-    h2 {
-        font-size: 20px; 
-    }
+            .card-container {
+                max-width: 95%; 
+                padding: 35px 20px; 
+            }
 
-    .brand {
-        margin-bottom: 25px; 
-    }
+            h2 {
+                font-size: 20px; 
+            }
 
-    .info-box {
-        padding: 15px; 
-    }
-}
+            .brand {
+                margin-bottom: 25px; 
+            }
+
+            .info-box {
+                padding: 15px; 
+            }
+        }
     </style>
 </head>
 <body>
@@ -252,17 +267,23 @@
     <h2>Cadastro</h2>
     <div class="subtitle">Crie sua conta para começar</div>
     
+    @if($errors->any())
+        <div class="alert-erro">
+            <strong>Ops!</strong> {{ $errors->first() }}
+        </div>
+    @endif
+    
     <form action="/cadastro" method="POST">
         @csrf 
 
         <div class="form-group">
             <label for="nome">Nome Completo</label>
-            <input type="text" name="nome" id="nome" class="form-control" placeholder="Seu nome completo" required>
+            <input type="text" name="nome" id="nome" class="form-control" placeholder="Seu nome completo" required value="{{ old('nome') }}">
         </div>
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="form-control" placeholder="Seu e-mail" required>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Seu e-mail" required value="{{ old('email') }}">
         </div>
 
         <div class="form-group">

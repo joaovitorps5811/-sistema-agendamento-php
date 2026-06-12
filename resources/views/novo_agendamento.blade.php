@@ -209,7 +209,10 @@
             <span>Olá, {{ auth()->user()->nome ?? 'Usuário' }}</span>
             <a href="/dashboard-user">Meus Agendamentos</a>
             <a href="#">Perfil</a>
-            <a href="#">Sair</a>
+            <form action="/logout" method="POST" style="display: inline;">
+                @csrf
+                <button type="submit" style="background: none; border: none; color: #b91c1c; font-size: 14px; font-weight: 600; cursor: pointer; padding: 0; font-family: inherit;">Sair</button>
+            </form>
         </div>
     </nav>
 
@@ -220,11 +223,12 @@
         </div>
 
         <div class="form-card">
-            <form action="#" method="POST">
+            <form action="{{ route('agendamento.salvar') }}" method="POST">
+                @csrf
                 
                 <div class="form-group">
                     <label for="service">Selecione o Serviço</label>
-                    <select id="service" class="form-control" required>
+                    <select id="service" name="servico" class="form-control" required>
                         <option value="" disabled selected>Escolha uma opção...</option>
                         <option value="corte">Corte Tradicional / Degradê - R$ 35,00</option>
                         <option value="barba">Barba Completa (Toalha Quente) - R$ 30,00</option>
@@ -235,12 +239,12 @@
 
                 <div class="form-group">
                     <label for="date">Data do Agendamento</label>
-                    <input type="date" id="date" class="form-control" required>
+                    <input type="date" id="date" name="data" class="form-control" required>
                 </div>
 
                 <div class="form-group">
                     <label for="time">Horário Disponível</label>
-                    <select id="time" class="form-control" required>
+                    <select id="time" name="horario" class="form-control" required>
                         <option value="" disabled selected>Escolha o horário...</option>
                         <option value="09:00">09:00</option>
                         <option value="10:00">10:00</option>
@@ -257,7 +261,6 @@
                     <a href="/dashboard-user" class="btn btn-secondary">Cancelar</a>
                     <button type="submit" class="btn btn-primary">Confirmar Agendamento</button>
                 </div>
-
             </form>
         </div>
     </main>
